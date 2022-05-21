@@ -10,5 +10,5 @@ app.use(express.static('server/public'));
 app.use('/list', listRouter);
 
 app.listen(PORT, () => {
-   console.log(`Server is up on ${PORT}`);
+    console.log(`Server is up on ${PORT}`);
 })
