@@ -5,7 +5,7 @@ CREATE TABLE tasks (
 	"end_date" timestamp not null,
 	"priority" boolean not null,
 	"progress" integer not null default 0,
-	"users" varchar(10) not null default current_user
+	"user" varchar(10) not null default current_user
 );
 
 INSERT INTO tasks (task, end_date, priority) VALUES 
