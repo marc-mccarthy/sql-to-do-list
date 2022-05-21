@@ -17,6 +17,6 @@
 [x] start postgresql
 [x] add postgresql database
 [x] add database.sql file
-[] add routes module
-[] add database pool module
+[x] add routes module
+[x] add database pool module
 [] start server
