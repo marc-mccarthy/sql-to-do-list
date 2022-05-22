@@ -6,7 +6,7 @@ taskRouter.post('/sendTask', (req, res) => {
     console.log('POST sendTask Server');
     console.log(req.body)
     let queryString = 'INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ($1, $2, $3, $4, $5, $6, $7);';
-    let values = [req.body.complete, req.body.task, req.body.startDate, req.body.endDate, req.body.priority, req.body.progress, req.body.user];
+    let values = [req.body.complete, req.body.task, req.body.startDate, req.body.endDate, req.body.priority, req.body.progress, req.body.username];
     pool.query(queryString, values)
     .then(result => {
         res.sendStatus(200);
