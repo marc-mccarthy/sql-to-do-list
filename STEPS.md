@@ -19,4 +19,26 @@
 [x] add database.sql file
 [x] add routes module
 [x] add database pool module
-[] start server
+[x] start server
+[x] set functions for page load
+[x] setup buttons for page listen
+[x] setup get request
+[x] setup post request
+[x] setup delete request
+[] setup put request
+[] validate/invalidate inputs information
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 
+[] 

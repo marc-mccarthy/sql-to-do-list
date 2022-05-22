@@ -1,11 +1,12 @@
 CREATE TABLE tasks (
 	"id" serial primary key,
+    "complete" boolean default 'No',
 	"task" text not null,
 	"start_date" timestamp not null default current_timestamp,
 	"end_date" timestamp not null,
 	"priority" boolean not null,
 	"progress" integer not null default 0,
-	"user" varchar(10) not null default current_user
+	"username" varchar(10) default current_user
 );
 
 INSERT INTO tasks (task, end_date, priority) VALUES 
