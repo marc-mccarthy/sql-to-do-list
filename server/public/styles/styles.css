@@ -1,19 +1,24 @@
 body {
+    text-align: center;
     background-color: bisque;
-    margin: 0;
+    margin: 30px;
 }
 
 h1 {
     text-align: center;
 }
 
-#belowTitle {
-    margin: 20px;
+#taskInputs {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-#taskInputs {
-    margin-top: 30px;
-    margin-bottom: 30px;
+#taskIn {
+    width: 400px;
+}
+
+select, input {
+    margin-left: 5px;
 }
 
 table {
@@ -22,6 +27,7 @@ table {
 }
 
 th, tf, td {
+    text-align: center;
     border: 1px solid black;
     padding: 10px;
 }
@@ -29,11 +35,6 @@ th, tf, td {
 .taskPriorityImage {
     width: 24px;
     height: auto;
-}
-
-.deleteTask, .taskCheckbox, .noBorderTable {
-    border: none;
-    text-align: center;
 }
 
 .taskCheckboxInput {

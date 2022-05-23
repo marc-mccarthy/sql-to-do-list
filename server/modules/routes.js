@@ -29,9 +29,15 @@ taskRouter.get('/getTasks', (req, res) => {
     })
 })
 
+//----- INCLUDED: feature-time-completed -----//
 taskRouter.put('/updateComplete', (req, res) => {
     console.log('PUT updateComplete Server');
-    let queryString = `UPDATE tasks SET complete = '${req.query.completed}' WHERE id = ${req.query.id};`;
+    let queryString = '';
+    if (req.query.completed == 'No') {
+        queryString = `UPDATE tasks SET complete = '${req.query.completed}', finish_date = 'Incomplete' WHERE id = ${req.query.id};`;
+    } else {
+        queryString = `UPDATE tasks SET complete = '${req.query.completed}', finish_date = '${transformDate(new Date().toJSON())}' WHERE id = ${req.query.id};`;
+    }
     pool.query(queryString)
     .then(result => {
         res.sendStatus(200);
@@ -53,6 +59,7 @@ taskRouter.delete('/deleteTask', (req, res) => {
 })
 
 function transformDate(date) {
+    console.log(Date.now())
     let time = dateTime.fromISO(date);
     let year = `${time.year}`;
     let slice = year.slice(2);
