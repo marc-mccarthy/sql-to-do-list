@@ -16,6 +16,7 @@ taskRouter.post('/sendTask', (req, res) => {
     })
 })
 
+//----- INCLUDED: feature-ordering-task-query -----//
 taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
     let queryString = `SELECT * FROM tasks ORDER BY id ${req.query.sort};`;
@@ -30,7 +31,7 @@ taskRouter.get('/getTasks', (req, res) => {
 
 taskRouter.put('/updateComplete', (req, res) => {
     console.log('PUT updateComplete Server');
-    let queryString = `UPDATE tasks SET complete = '${req.query.completed}' WHERE id = ${req.query.id};`
+    let queryString = `UPDATE tasks SET complete = '${req.query.completed}' WHERE id = ${req.query.id};`;
     pool.query(queryString)
     .then(result => {
         res.sendStatus(200);
@@ -42,7 +43,7 @@ taskRouter.put('/updateComplete', (req, res) => {
 
 taskRouter.delete('/deleteTask', (req, res) => {
     console.log('DELETE deleteTask Server');
-    let queryString = `DELETE FROM tasks WHERE id=${req.query.id}`
+    let queryString = `DELETE FROM tasks WHERE id=${req.query.id}`;
     pool.query(queryString)
     .then(result => {
         res.sendStatus(200);
@@ -55,7 +56,7 @@ function transformDate(date) {
     let time = dateTime.fromISO(date);
     let year = `${time.year}`;
     let slice = year.slice(2);
-    return `${time.month}/${time.day}/${slice}`
+    return `${time.month}/${time.day}/${slice}`;
 }
 
 module.exports = taskRouter
