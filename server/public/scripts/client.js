@@ -6,7 +6,7 @@ $(document).ready(() => {
 function setupClickListeners() {
     $('#addTaskButton').on('click', createTask);
     $('#taskOutputsBody').on('click', '.deleteTaskButton', deleteTaskAlert);
-    $('#taskOutputsBody').on('change', '.taskCheckboxInput', checkboxToggle)
+    $('#taskOutputsBody').on('change', '.taskCheckboxInput', checkboxToggle);
 }
 
 function createTask() {
@@ -17,10 +17,10 @@ function createTask() {
         endDate: $('#endDateIn').val(),
         priority: $('#priorityIn').val(),
         progress: $('#progressIn').val(),
-        username: $('#usernameIn').val()
+        username: $('#usernameIn').val(),
     }
     emptyInputs();
-    checkNewTask(newTask)
+    checkNewTask(newTask);
 }
 
 function checkNewTask(newTask) {
@@ -40,7 +40,7 @@ function checkNewTask(newTask) {
                 imageHeight: 'auto',
                 confirmButtonText: 'Ok',
             })
-            return false
+            return false;
         }
     }
     if (newTask.progress < 0 || newTask.progress > 100) {
@@ -74,18 +74,18 @@ function checkNewTask(newTask) {
             imageHeight: 'auto',
             confirmButtonText: 'Ok',
         })
-        return false
+        return false;
     } else {
         sendTask(newTask);
     }
 }
 
 function sendTask(newTask) {
-    console.log('POST sendTask')
+    console.log('POST sendTask');
     $.ajax({
         method: 'POST',
         url: '/list/sendTask',
-        data: newTask
+        data: newTask,
     }).then(response => {
         getTasks();
     }).catch(error => {
@@ -93,11 +93,12 @@ function sendTask(newTask) {
     })
 }
 
+//----- INCLUDED: feature-ordering-task-query -----//
 function getTasks() {
     console.log('GET getTasks');
     $.ajax({
         method: 'GET',
-        url: '/list/getTasks?sort=DESC'
+        url: '/list/getTasks?sort=DESC',
     }).then(response => {
         appendsTasks(response);
     }).catch(error => {
@@ -115,12 +116,12 @@ function appendsTasks(allTasks) {
         let isPriority = '';
         if (allTasks[i].complete) {
             isChecked = 'checked';
-            isGrey = "style='background-color:grey'"
+            isGrey = "style='background-color:grey'";
         }
         if (allTasks[i].priority) {
-            isPriority = '../images/checkTrue.png'
+            isPriority = '../images/checkTrue.png';
         } else {
-            isPriority = '../images/checkFalse.png'
+            isPriority = '../images/checkFalse.png';
         }
         el.append(`<tr ${isGrey}><td class="taskCheckbox"><input class="taskCheckboxInput" type="checkbox" data-id="${allTasks[i].id}" ${isChecked}></td>
             <td class="task">${allTasks[i].task}</td>
@@ -129,15 +130,15 @@ function appendsTasks(allTasks) {
             <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
             <td class="taskProgress">${allTasks[i].progress}</td>
             <td class="taskUser">${allTasks[i].username}</td>
-            <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`)
+            <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`);
     }
 }
 
 function updateComplete(id, isChecked) {
-    console.log('PUT updateComplete')
+    console.log('PUT updateComplete');
     $.ajax({
         method: 'PUT',
-        url: `/list/updateComplete?id=${id}&completed=${isChecked}`
+        url: `/list/updateComplete?id=${id}&completed=${isChecked}`,
     }).then(response => {
         getTasks();
     }).catch(error => {
@@ -146,7 +147,7 @@ function updateComplete(id, isChecked) {
 }
 
 function deleteTaskAlert() {
-    let id = $(this).data('id')
+    let id = $(this).data('id');
     Swal.fire({
         title: 'Are you sure?',
         showClass: {
@@ -173,10 +174,10 @@ function deleteTaskAlert() {
 }
 
 function deleteTask(id) {
-    console.log('DELETE deleteTask')  
+    console.log('DELETE deleteTask')  ;
     $.ajax({
         method: 'DELETE',
-        url: `/list/deleteTask?id=${id}`
+        url: `/list/deleteTask?id=${id}`,
     }).then(response => {
         getTasks();
     }).catch(error => {
@@ -185,7 +186,7 @@ function deleteTask(id) {
 }
 
 function checkboxToggle() {
-    let id = $(this).data('id')
+    let id = $(this).data('id');
     let isChecked = 'No';
     if ($(this).is(':checked')) {
         $(this).closest('tr').css('background-color', 'grey');

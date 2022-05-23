@@ -66,6 +66,10 @@
 [x] setup put to-do to database
 [x] setup manipulation functions on server
 
+## CSS
+[x] design website
+
 ## Tidy Up
 [x] fill out README.md
 [x] fill out database.sql file
+[x] fill out comments on code
