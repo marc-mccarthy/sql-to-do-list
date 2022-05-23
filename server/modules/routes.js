@@ -1,12 +1,14 @@
 const express = require('express');
 const taskRouter = express.Router();
 const pool = require('./pool');
+const luxon = require('luxon');
+const dateTime = luxon.DateTime;
 
 taskRouter.post('/sendTask', (req, res) => {
     console.log('POST sendTask Server');
     console.log(req.body)
     let queryString = 'INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ($1, $2, $3, $4, $5, $6, $7);';
-    let values = [req.body.complete, req.body.task, req.body.startDate, req.body.endDate, req.body.priority, req.body.progress, req.body.username];
+    let values = [req.body.complete, req.body.task, transformDate(req.body.startDate), transformDate(req.body.endDate), req.body.priority, req.body.progress, req.body.username];
     pool.query(queryString, values)
     .then(result => {
         res.sendStatus(200);
@@ -50,5 +52,12 @@ taskRouter.delete('/deleteTask', (req, res) => {
         res.sendStatus(500);
     })
 })
+
+function transformDate(date) {
+    let time = dateTime.fromISO(date);
+    let year = `${time.year}`;
+    let slice = year.slice(2);
+    return `${time.month}/${time.day}/${slice}`
+}
 
 module.exports = taskRouter

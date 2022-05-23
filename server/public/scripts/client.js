@@ -5,7 +5,7 @@ $(document).ready(() => {
 
 function setupClickListeners() {
     $('#addTaskButton').on('click', createTask);
-    $('#taskOutputsBody').on('click', '.deleteTaskButton', deleteTask);
+    $('#taskOutputsBody').on('click', '.deleteTaskButton', deleteTaskAlert);
     $('#taskOutputsBody').on('change', '.taskCheckboxInput', checkboxToggle)
 }
 
@@ -20,28 +20,43 @@ function createTask() {
         username: $('#usernameIn').val()
     }
     emptyInputs();
-    if (checkNewTask(newTask)) {
-        sendTask(newTask);
-    } else {
-        return false;
-    }
+    checkNewTask(newTask)
 }
 
 function checkNewTask(newTask) {
-    if (newTask.progress < 0 || newTask.progress > 100) {
-        alert('Not a valid percentage');
-        return false;
-    } else if (newTask.startDate > newTask.endDate) {
-        alert('The date values are not valid');
-        return false;
-    }
     for (const prop in newTask) {
-        if (prop === '') {
-            alert('Missed something');
-            return false;
+        if (newTask[prop] === '') {
+            Swal.fire({
+                title: 'Forgot something',
+                imageUrl: '../images/scottForgot.gif',
+                imageWidth: '240px',
+                imageHeight: 'auto',
+                confirmButtonText: 'Ok',
+            })
+            return false
         }
     }
-    return true
+    if (newTask.progress < 0 || newTask.progress > 100) {
+        Swal.fire({
+            title: 'What is a percentage anyway?',
+            imageUrl: '../images/noMath.gif',
+            imageWidth: '240px',
+            imageHeight: 'auto',
+            confirmButtonText: 'Ok',
+        })
+        return false;
+    } else if (newTask.startDate > newTask.endDate) {
+        Swal.fire({
+            title: 'Your dates are backwards',
+            imageUrl: '../images/garfieldBackwards.gif',
+            imageWidth: '240px',
+            imageHeight: 'auto',
+            confirmButtonText: 'Ok',
+        })
+        return false
+    } else {
+        sendTask(newTask);
+    }
 }
 
 function sendTask(newTask) {
@@ -75,21 +90,25 @@ function appendsTasks(allTasks) {
     let el = $('#taskOutputsBody');
     el.empty();
     for (i = 0; i < allTasks.length; i++) {
-        console.log(allTasks[i].complete)
         let isChecked = '';
         let isGrey = '';
+        let isPriority = '';
         if (allTasks[i].complete) {
             isChecked = 'checked';
             isGrey = "style='background-color:grey'"
+        }
+        if (allTasks[i].priority) {
+            isPriority = '../images/checkTrue.png'
+        } else {
+            isPriority = '../images/checkFalse.png'
         }
         el.append(`<tr ${isGrey}><td class="taskCheckbox"><input class="taskCheckboxInput" type="checkbox" data-id="${allTasks[i].id}" ${isChecked}></td>
             <td class="task">${allTasks[i].task}</td>
             <td class="taskStartDate">${allTasks[i].start_date}</td>
             <td class="taskEndDate">${allTasks[i].end_date}</td>
-            <td class="taskPriority">${allTasks[i].priority}</td>
+            <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
             <td class="taskProgress">${allTasks[i].progress}</td>
             <td class="taskUser">${allTasks[i].username}</td>
-            <td class="updateTask"><button class="updateTaskButton">Update</button></td>
             <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`)
     }
 }
@@ -106,10 +125,37 @@ function updateComplete(id, isChecked) {
     })
 }
 
-function deleteTask() {
+function deleteTaskAlert() {
+    let id = $(this).data('id')
+    Swal.fire({
+        title: 'Are you sure?',
+        showClass: {
+            popup: 'animate__animated animate__backInUp',
+            backdrop: 'swal2-backdrop-show',
+        },
+        hideClass: {
+            popup: 'animate__animated animate__backOutUp',
+        },
+        imageUrl: '../images/goAhead.gif',
+        imageWidth: '240px',
+        imageHeight: 'auto',
+        showDenyButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        footer: "A footer because I like talking",
+    }).then(result => {
+        if (result.isConfirmed) {
+            deleteTask(id);
+        } else if (result.isDenied) {
+            return false;
+        }
+    })
+}
+
+function deleteTask(id) {    
     $.ajax({
         method: 'DELETE',
-        url: `/list/deleteTask?id=${$(this).data('id')}`
+        url: `/list/deleteTask?id=${id}`
     }).then(response => {
         console.log('DELETE deleteTask Then');
         getTasks();

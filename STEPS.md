@@ -26,19 +26,7 @@
 [x] setup post request
 [x] setup delete request
 [x] setup put request
-[] validate/invalidate inputs information
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
-[] 
+[x] validate/invalidate inputs information
 [] 
 [] 
 [] 
