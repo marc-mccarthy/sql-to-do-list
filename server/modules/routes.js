@@ -6,7 +6,6 @@ const dateTime = luxon.DateTime;
 
 taskRouter.post('/sendTask', (req, res) => {
     console.log('POST sendTask Server');
-    console.log(req.body)
     let queryString = 'INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ($1, $2, $3, $4, $5, $6, $7);';
     let values = [req.body.complete, req.body.task, transformDate(req.body.startDate), transformDate(req.body.endDate), req.body.priority, req.body.progress, req.body.username];
     pool.query(queryString, values)
@@ -19,7 +18,7 @@ taskRouter.post('/sendTask', (req, res) => {
 
 taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
-    let queryString = 'SELECT * FROM tasks;';
+    let queryString = `SELECT * FROM tasks ORDER BY id ${req.query.sort};`;
     pool.query(queryString)
     .then(result => {
         res.send(result.rows);
@@ -31,7 +30,6 @@ taskRouter.get('/getTasks', (req, res) => {
 
 taskRouter.put('/updateComplete', (req, res) => {
     console.log('PUT updateComplete Server');
-    console.log(req.query.completed)
     let queryString = `UPDATE tasks SET complete = '${req.query.completed}' WHERE id = ${req.query.id};`
     pool.query(queryString)
     .then(result => {

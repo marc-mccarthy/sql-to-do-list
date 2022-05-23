@@ -20,31 +20,34 @@
     <div id="titleArea">
         <h1>SQL To-Do List</h1>
     </div>
-    <div id="taskInputs">
-        <input type="text" id="taskIn" placeholder="Task"/>
-        <input type="date" id="startDateIn" placeholder="Start Date"/>
-        <input type="date" id="endDateIn" placeholder="End Date"/>
-        <select id="priorityIn">
-            <option>No</option>
-            <option>Yes</option>
-        </select>
-        <input type="number" id="progressIn" placeholder="Progress %"/>
-        <input type="text" id="usernameIn" placeholder="Assigned"/>
-        <button id="addTaskButton">Add Task</button>
+    <div id="belowTitle">
+        <div id="taskInputs">
+            <input type="text" id="taskIn" placeholder="Task"/>
+            <input type="date" id="startDateIn" placeholder="Start Date"/>
+            <input type="date" id="endDateIn" placeholder="End Date"/>
+            <select id="priorityIn">
+                <option>No</option>
+                <option>Yes</option>
+            </select>
+            <input type="number" id="progressIn" placeholder="Progress %"/>
+            <input type="text" id="usernameIn" placeholder="Assigned"/>
+            <button id="addTaskButton">Add Task</button>
+        </div>
+        <div id="taskOutputs">
+            <table>
+                <thead>
+                    <th class="noBorderTable"></th>
+                    <th>Task</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Priority</th>
+                    <th>Progress</th>
+                    <th>Assigned</th>
+                </thead>
+                <tbody id="taskOutputsBody"></tbody>
+            </table>
+        </div>
     </div>
-    <div id="taskOutputs">
-        <table>
-            <thead>
-                <th></th>
-                <th>Task</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Priority</th>
-                <th>Progress</th>
-                <th>Assigned</th>
-            </thead>
-            <tbody id="taskOutputsBody"></tbody>
-        </table>
-    </div>
+</div>
 </body>
 </html>

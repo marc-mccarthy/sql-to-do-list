@@ -60,12 +60,12 @@ function checkNewTask(newTask) {
 }
 
 function sendTask(newTask) {
+    console.log('POST sendTask')
     $.ajax({
         method: 'POST',
         url: '/list/sendTask',
         data: newTask
     }).then(response => {
-        console.log('POST sendTask Then');
         getTasks();
     }).catch(error => {
         console.log(`POST sendTask Error: ${error}`);
@@ -73,12 +73,11 @@ function sendTask(newTask) {
 }
 
 function getTasks() {
-    console.log('GET /list/getTasks');
+    console.log('GET getTasks');
     $.ajax({
         method: 'GET',
-        url: '/list/getTasks'
+        url: '/list/getTasks?sort=DESC'
     }).then(response => {
-        console.log('GET getTasks Then');
         appendsTasks(response);
     }).catch(error => {
         console.log(`GET getTasks Error: ${error}`);
@@ -114,11 +113,11 @@ function appendsTasks(allTasks) {
 }
 
 function updateComplete(id, isChecked) {
+    console.log('PUT updateComplete')
     $.ajax({
         method: 'PUT',
         url: `/list/updateComplete?id=${id}&completed=${isChecked}`
     }).then(response => {
-        console.log('PUT updateComplete Then');
         getTasks();
     }).catch(error => {
         console.log(`PUT updateComplete Error: ${error}`);
@@ -152,12 +151,12 @@ function deleteTaskAlert() {
     })
 }
 
-function deleteTask(id) {    
+function deleteTask(id) {
+    console.log('DELETE deleteTask')  
     $.ajax({
         method: 'DELETE',
         url: `/list/deleteTask?id=${id}`
     }).then(response => {
-        console.log('DELETE deleteTask Then');
         getTasks();
     }).catch(error => {
         console.log(`DELETE deleteTask Error: ${error}`);

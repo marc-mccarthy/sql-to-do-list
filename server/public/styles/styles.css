@@ -1,5 +1,19 @@
 body {
     background-color: bisque;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+#belowTitle {
+    margin: 20px;
+}
+
+#taskInputs {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 table {
@@ -15,4 +29,13 @@ th, tf, td {
 .taskPriorityImage {
     width: 24px;
     height: auto;
+}
+
+.deleteTask, .taskCheckbox, .noBorderTable {
+    border: none;
+    text-align: center;
+}
+
+.taskCheckboxInput {
+    transform: scale(1.5);
 }
