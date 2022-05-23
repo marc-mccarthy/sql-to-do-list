@@ -28,6 +28,13 @@ function checkNewTask(newTask) {
         if (newTask[prop] === '') {
             Swal.fire({
                 title: 'Forgot something',
+                showClass: {
+                    popup: 'animate__animated animate__rotateIn',
+                    backdrop: 'swal2-backdrop-show',
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__rotateOut',
+                },
                 imageUrl: '../images/scottForgot.gif',
                 imageWidth: '240px',
                 imageHeight: 'auto',
@@ -39,6 +46,13 @@ function checkNewTask(newTask) {
     if (newTask.progress < 0 || newTask.progress > 100) {
         Swal.fire({
             title: 'What is a percentage anyway?',
+            showClass: {
+                popup: 'animate__animated animate__backInDown',
+                backdrop: 'swal2-backdrop-show',
+            },
+            hideClass: {
+                popup: 'animate__animated animate__backOutDown',
+            },
             imageUrl: '../images/noMath.gif',
             imageWidth: '240px',
             imageHeight: 'auto',
@@ -48,6 +62,13 @@ function checkNewTask(newTask) {
     } else if (newTask.startDate > newTask.endDate) {
         Swal.fire({
             title: 'Your dates are backwards',
+            showClass: {
+                popup: 'animate__animated animate__bounceIn',
+                backdrop: 'swal2-backdrop-show',
+            },
+            hideClass: {
+                popup: 'animate__animated animate__bounceOut',
+            },
             imageUrl: '../images/garfieldBackwards.gif',
             imageWidth: '240px',
             imageHeight: 'auto',
@@ -129,11 +150,11 @@ function deleteTaskAlert() {
     Swal.fire({
         title: 'Are you sure?',
         showClass: {
-            popup: 'animate__animated animate__backInUp',
+            popup: 'animate__animated animate__fadeIn',
             backdrop: 'swal2-backdrop-show',
         },
         hideClass: {
-            popup: 'animate__animated animate__backOutUp',
+            popup: 'animate__animated animate__fadeOut',
         },
         imageUrl: '../images/goAhead.gif',
         imageWidth: '240px',
