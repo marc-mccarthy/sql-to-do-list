@@ -67,7 +67,7 @@
 [x] setup manipulation functions on server
 
 ## CSS
-[x] design website
+[x] style/design website
 
 ## Tidy Up
 [x] fill out README.md

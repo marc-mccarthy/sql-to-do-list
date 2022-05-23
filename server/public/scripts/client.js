@@ -128,7 +128,7 @@ function appendsTasks(allTasks) {
             <td class="taskStartDate">${allTasks[i].start_date}</td>
             <td class="taskEndDate">${allTasks[i].end_date}</td>
             <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
-            <td class="taskProgress">${allTasks[i].progress}</td>
+            <td class="taskProgress">${allTasks[i].progress}%</td>
             <td class="taskUser">${allTasks[i].username}</td>
             <td class="taskFinishDate">${allTasks[i].finish_date}</td>
             <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`);
