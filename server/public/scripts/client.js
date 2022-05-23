@@ -146,6 +146,7 @@ function updateComplete(id, isChecked) {
     })
 }
 
+//----- INCLUDED: feature-confirm-delete -----//
 function deleteTaskAlert() {
     let id = $(this).data('id');
     Swal.fire({
