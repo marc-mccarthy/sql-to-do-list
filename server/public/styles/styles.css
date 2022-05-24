@@ -27,14 +27,11 @@ label {
     width: 100px;
 }
 
-#taskInputs {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
 .flex-container {
     display: flex;
     justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .flex-container-2 {
@@ -46,6 +43,7 @@ label {
 
 .form-control, .form-select {
     height: 40px;
+    min-width: 100px;
 }
 
 #taskIn {

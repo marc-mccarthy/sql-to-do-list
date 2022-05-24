@@ -10,11 +10,11 @@ CREATE TABLE tasks (
 	"finish_date" text not null default 'Incomplete'
 );
 
-INSERT INTO tasks (task, start_date, end_date, priority) VALUES 
-('Mow the lawn', '05/25/22', '05/27/22', 'false'),
-('Code a To-Do-List', '05/23/22', '05/24/22', 'true'),
-('Pick up dog poo', '05/26/22', '05/27/22', 'false'),
-('Setup a tasks database', '05/24/22', '05/28/22', 'true');
+INSERT INTO tasks (task, start_date, end_date, priority, progress) VALUES 
+('Mow the lawn', '05/25/22', '05/27/22', 'false', '40'),
+('Code a To-Do-List', '05/23/22', '05/24/22', 'true', '100'),
+('Pick up dog poo', '05/26/22', '05/27/22', 'false', '20'),
+('Setup a tasks database', '05/24/22', '05/28/22', 'true', '100');
 
 INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ('No', 'Paint the fence', '5/20/22', '5/23/22', 'Yes', '20', 'Madden');
 
