@@ -7,8 +7,24 @@ body {
 }
 
 h1 {
+    text-decoration: bold;
     color: white;
     text-align: center;
+}
+
+label {
+    font-size: large;
+    color: white;
+    text-align: left;
+}
+
+#addTaskButton {
+    align-self: flex-end;
+    width: 100px;
+}
+
+.deleteTaskButton {
+    width: 100px;
 }
 
 #taskInputs {
@@ -16,38 +32,53 @@ h1 {
     margin-bottom: 40px;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 10px;
+}
+
+.form-control, .form-select {
+    height: 40px;
+}
+
 #taskIn {
-    width: 400px;
-}
-
-select, input, #addTaskButton {
-    font-size: medium;
-    margin-left: 5px;
-    height: 30px;
-    border-radius: 5px;
-    min-width: 75px;
-    border: 1px black solid;
-}
-
-.taskCheckboxInput {
-    transform: scale(1.5);
-    margin: 0px;
-    height: 20px;
-    border-radius: 5px;
+    width: 375px;
 }
 
 table {
     background-color: white;
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid black;
-    border-radius: 20px;
+    border: 8px double black;
 }
 
 th, tf, td {
     text-align: center;
     border: 1px solid black;
     padding: 10px;
+}
+
+.form-switch {
+    transform: scale(1.35);
+}
+
+.form-check-input {
+    background-color: white;
+    border-color: green;
+    transform: scale(1.35);
+}
+
+.form-check-input:checked {
+    background-color: green;
+    border-color: green;
+    transform: scale(1.35);
 }
 
 .taskPriorityImage {

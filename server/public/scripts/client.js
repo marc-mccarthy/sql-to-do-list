@@ -6,7 +6,7 @@ $(document).ready(() => {
 function setupClickListeners() {
     $('#addTaskButton').on('click', createTask);
     $('#taskOutputsBody').on('click', '.deleteTaskButton', deleteTaskAlert);
-    $('#taskOutputsBody').on('change', '.taskCheckboxInput', checkboxToggle);
+    $('#taskOutputsBody').on('change', '.taskSwitchInput', checkboxToggle);
 }
 
 function createTask() {
@@ -125,16 +125,34 @@ function appendsTasks(allTasks) {
         } else {
             isPriority = '../images/checkFalse.png';
         }
-        el.append(`<tr class="taskRow" ${isGrey}><td class="taskCheckbox"><input class="taskCheckboxInput" type="checkbox" data-id="${allTasks[i].id}" ${isChecked}></td>
-            <td class="task">${allTasks[i].task}</td>
-            <td class="taskStartDate">${allTasks[i].start_date}</td>
-            <td class="taskEndDate">${allTasks[i].end_date}</td>
-            <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
-            <td class="taskProgress">${allTasks[i].progress}%</td>
-            <td class="taskUser">${allTasks[i].username}</td>
-            <td class="taskFinishDate" ${isBlue}>${allTasks[i].finish_date}</td>
-            <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`);
+        el.append(
+            `<tr class="taskRow" ${isGrey}>
+                <td class="form-switch">
+                    <input class="form-check-input taskSwitchInput" role="switch" type="checkbox" data-id="${allTasks[i].id}" ${isChecked}>
+                </td>
+                <td class="task">${allTasks[i].task}</td>
+                <td class="taskStartDate">${allTasks[i].start_date}</td>
+                <td class="taskEndDate">${allTasks[i].end_date}</td>
+                <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
+                <td class="taskProgress">${allTasks[i].progress}%</td>
+                <td class="taskUser">${allTasks[i].username}</td>
+                <td class="taskFinishDate" ${isBlue}>${allTasks[i].finish_date}</td>
+                <td class="deleteTask"><button class="deleteTaskButton form-control btn btn-danger" data-id="${allTasks[i].id}">Delete</button></td>
+            </tr>`
+        );
     }
+}
+
+function checkboxToggle() {
+    let id = $(this).data('id');
+    let isChecked = 'No';
+    if ($(this).is(':checked')) {
+        $(this).closest('tr').css('background-color', 'grey');
+        isChecked = 'Yes';
+    } else {
+        $(this).closest('tr').css('background-color', 'inherit');
+    }
+    updateComplete(id, isChecked);
 }
 
 function updateComplete(id, isChecked) {
@@ -188,18 +206,6 @@ function deleteTask(id) {
         console.log(`DELETE deleteTask Error: ${error}`);
     })
 }
-
-function checkboxToggle() {
-    let id = $(this).data('id');
-    let isChecked = 'No';
-    if ($(this).is(':checked')) {
-        $(this).closest('tr').css('background-color', 'grey');
-        isChecked = 'Yes';
-    } else {
-        $(this).closest('tr').css('background-color', 'inherit');
-    }
-    updateComplete(id, isChecked);
-}   
 
 function emptyInputs() {
     $('#taskIn').val('');
