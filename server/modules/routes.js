@@ -21,7 +21,7 @@ taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
     let queryString = 'SELECT * FROM tasks ORDER BY id DESC;';
     let values = [req.query.sort];
-    pool.query(queryString, values)
+    pool.query(queryString)
     .then(result => {
         res.send(result.rows);
     }).catch(error => {

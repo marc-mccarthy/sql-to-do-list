@@ -205,7 +205,6 @@ function emptyInputs() {
     $('#taskIn').val('');
     $('#startDateIn').val('');
     $('#endDateIn').val('');
-    $('#priorityIn').val('');
     $('#progressIn').val('');
     $('#usernameIn').val('');
 }
