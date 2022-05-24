@@ -19,7 +19,8 @@ taskRouter.post('/sendTask', (req, res) => {
 //----- INCLUDED: feature-ordering-task-query -----//
 taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
-    let queryString = `SELECT * FROM tasks ORDER BY id ${req.query.sort};`;
+    let queryString = `SELECT * FROM tasks ORDER BY id DESC;`;
+    let values = [req.query.sort];
     pool.query(queryString)
     .then(result => {
         res.send(result.rows);
