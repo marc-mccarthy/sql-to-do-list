@@ -19,8 +19,9 @@ taskRouter.post('/sendTask', (req, res) => {
 //----- INCLUDED: feature-ordering-task-query -----//
 taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
-    let queryString = `SELECT * FROM tasks ORDER BY id ${req.query.sort};`;
-    pool.query(queryString)
+    let queryString = 'SELECT * FROM tasks ORDER BY id DESC;';
+    let values = [req.query.sort];
+    pool.query(queryString, values)
     .then(result => {
         res.send(result.rows);
     }).catch(error => {
@@ -33,12 +34,15 @@ taskRouter.get('/getTasks', (req, res) => {
 taskRouter.put('/updateComplete', (req, res) => {
     console.log('PUT updateComplete Server');
     let queryString = '';
-    if (req.query.completed == 'No') {
-        queryString = `UPDATE tasks SET complete = '${req.query.completed}', finish_date = 'Incomplete' WHERE id = ${req.query.id};`;
+    let values = []
+    if (req.query.completed === 'No') {
+        queryString = `UPDATE tasks SET complete = $1, finish_date = $2 WHERE id = $3;`;
+        values = [req.query.completed, 'Incomplete', req.query.id]
     } else {
-        queryString = `UPDATE tasks SET complete = '${req.query.completed}', finish_date = '${transformDate(new Date().toJSON())}' WHERE id = ${req.query.id};`;
+        queryString = `UPDATE tasks SET complete = $1, finish_date = $2 WHERE id = $3;`;
+        values = [req.query.completed, transformDate(new Date().toJSON()), req.query.id]
     }
-    pool.query(queryString)
+    pool.query(queryString, values)
     .then(result => {
         res.sendStatus(200);
     }).catch(error => {
@@ -49,8 +53,9 @@ taskRouter.put('/updateComplete', (req, res) => {
 
 taskRouter.delete('/deleteTask', (req, res) => {
     console.log('DELETE deleteTask Server');
-    let queryString = `DELETE FROM tasks WHERE id=${req.query.id}`;
-    pool.query(queryString)
+    let queryString = `DELETE FROM tasks WHERE id = $1;`;
+    let values = [req.query.id]
+    pool.query(queryString, values)
     .then(result => {
         res.sendStatus(200);
     }).catch(result => {
