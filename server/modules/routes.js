@@ -59,7 +59,6 @@ taskRouter.delete('/deleteTask', (req, res) => {
 })
 
 function transformDate(date) {
-    console.log(Date.now())
     let time = dateTime.fromISO(date);
     let year = `${time.year}`;
     let slice = year.slice(2);

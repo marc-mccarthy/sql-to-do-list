@@ -113,10 +113,12 @@ function appendsTasks(allTasks) {
     for (i = 0; i < allTasks.length; i++) {
         let isChecked = '';
         let isGrey = '';
+        let isBlue = '';
         let isPriority = '';
         if (allTasks[i].complete) {
             isChecked = 'checked';
             isGrey = "style='background-color:grey'";
+            isBlue = "style='background-color:lightblue'"
         }
         if (allTasks[i].priority) {
             isPriority = '../images/checkTrue.png';
@@ -130,7 +132,7 @@ function appendsTasks(allTasks) {
             <td class="taskPriority"><img class="taskPriorityImage" src="${isPriority}"</td>
             <td class="taskProgress">${allTasks[i].progress}%</td>
             <td class="taskUser">${allTasks[i].username}</td>
-            <td class="taskFinishDate">${allTasks[i].finish_date}</td>
+            <td class="taskFinishDate" ${isBlue}>${allTasks[i].finish_date}</td>
             <td class="deleteTask"><button class="deleteTaskButton" data-id="${allTasks[i].id}">Delete</button></td></tr>`);
     }
 }
