@@ -4,6 +4,8 @@ const pool = require('./pool');
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
 
+
+// inputs into database
 taskRouter.post('/sendTask', (req, res) => {
     console.log('POST sendTask Server');
     let queryString = 'INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ($1, $2, $3, $4, $5, $6, $7);';
@@ -17,10 +19,15 @@ taskRouter.post('/sendTask', (req, res) => {
 })
 
 //----- INCLUDED: feature-ordering-task-query -----//
+// gets from database
 taskRouter.get('/getTasks', (req, res) => {
     console.log('GET getTasks Server');
-    let queryString = 'SELECT * FROM tasks ORDER BY id DESC;';
-    let values = [req.query.sort];
+    let queryString;
+    if (req.query.sort === 'ASC') {
+        queryString = 'SELECT * FROM tasks ORDER BY id ASC;';
+    } else if (req.query.sort === 'DESC') {
+        queryString = 'SELECT * FROM tasks ORDER BY id DESC;';
+    }
     pool.query(queryString)
     .then(result => {
         res.send(result.rows);
@@ -31,10 +38,11 @@ taskRouter.get('/getTasks', (req, res) => {
 })
 
 //----- INCLUDED: feature-time-completed -----//
+// updates into database
 taskRouter.put('/updateComplete', (req, res) => {
     console.log('PUT updateComplete Server');
-    let queryString = '';
-    let values = []
+    let queryString;
+    let values = [];
     if (req.query.completed === 'No') {
         queryString = `UPDATE tasks SET complete = $1, finish_date = $2 WHERE id = $3;`;
         values = [req.query.completed, 'Incomplete', req.query.id]
@@ -51,6 +59,7 @@ taskRouter.put('/updateComplete', (req, res) => {
     })
 })
 
+// deletes from database
 taskRouter.delete('/deleteTask', (req, res) => {
     console.log('DELETE deleteTask Server');
     let queryString = `DELETE FROM tasks WHERE id = $1;`;
@@ -63,6 +72,7 @@ taskRouter.delete('/deleteTask', (req, res) => {
     })
 })
 
+// transforms dates into mm-dd-yy format on function call
 function transformDate(date) {
     let time = dateTime.fromISO(date);
     let year = `${time.year}`;

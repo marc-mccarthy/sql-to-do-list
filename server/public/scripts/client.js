@@ -3,12 +3,14 @@ $(document).ready(() => {
     getTasks();
 })
 
+// listen for button clicks and changes
 function setupClickListeners() {
     $('#addTaskButton').on('click', createTask);
     $('#taskOutputsBody').on('click', '.deleteTaskButton', deleteTaskAlert);
     $('#taskOutputsBody').on('change', '.taskSwitchInput', checkboxToggle);
 }
 
+// create a task object, send to check validity when done
 function createTask() {
     let newTask = {
         complete: 'No',
@@ -23,6 +25,7 @@ function createTask() {
     checkNewTask(newTask);
 }
 
+// validate all properties in newTask, throw alerts if bad input
 function checkNewTask(newTask) {
     for (const prop in newTask) {
         if (newTask[prop] === '') {
@@ -80,6 +83,7 @@ function checkNewTask(newTask) {
     }
 }
 
+// post newTask to server, get tasks from server when done
 function sendTask(newTask) {
     console.log('POST sendTask');
     $.ajax({
@@ -94,6 +98,7 @@ function sendTask(newTask) {
 }
 
 //----- INCLUDED: feature-ordering-task-query -----//
+// get tasks from server, send to be appended when done
 function getTasks() {
     console.log('GET getTasks');
     $.ajax({
@@ -106,6 +111,7 @@ function getTasks() {
     })
 }
 
+// appends all tasks to DOM after checking for 'checks' and 'completed'
 function appendsTasks(allTasks) {
     console.log('Appends Tasks');
     let el = $('#taskOutputsBody');
@@ -143,6 +149,7 @@ function appendsTasks(allTasks) {
     }
 }
 
+// toggles checkbox css formatting, sends to be updated when done
 function checkboxToggle() {
     let id = $(this).data('id');
     let isChecked = 'No';
@@ -155,6 +162,7 @@ function checkboxToggle() {
     updateComplete(id, isChecked);
 }
 
+// put task to server with query params, get tasks from server when done
 function updateComplete(id, isChecked) {
     console.log('PUT updateComplete');
     $.ajax({
@@ -168,6 +176,7 @@ function updateComplete(id, isChecked) {
 }
 
 //----- INCLUDED: feature-confirm-delete -----//
+// delete task popup confirmation with confirmation, send to delete if confirmed 
 function deleteTaskAlert() {
     let id = $(this).data('id');
     Swal.fire({
@@ -195,6 +204,7 @@ function deleteTaskAlert() {
     })
 }
 
+// delete task with query param, get tasks back from server when done
 function deleteTask(id) {
     console.log('DELETE deleteTask')  ;
     $.ajax({
@@ -207,6 +217,7 @@ function deleteTask(id) {
     })
 }
 
+// empties DOM inputs on function call
 function emptyInputs() {
     $('#taskIn').val('');
     $('#startDateIn').val('');
