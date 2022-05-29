@@ -1,12 +1,15 @@
 # All Steps
+
 ## Initialization
-[x] git clone <repo-name>
-[x] cd <repo-name>
+
+[x] git clone (repo-name)
+[x] cd (repo-name)
 [x] npm init --y
 [x] npm install express nodemon pg luxon
 [x] add scripts to package.json
 
 ## Adding Folders/Files
+
 [x] add README.md file
 [x] add .gitignore file
 [x] add database.sql file
@@ -25,6 +28,7 @@
 [x] add image files
 
 ## Source Files
+
 [x] source CDN jquery
 [x] source CDN bootstrap
 [x] source CDN sweetalert2
@@ -34,15 +38,18 @@
 [x] source favicon.ico
 
 ## Postgresql
+
 [x] start postgresql service
 [x] add postgresql database
 [x] add postgresql table
 
 ## IDE Modules
+
 [x] setup routes.js and module.exports
 [x] setup pool.js and module.exports
 
 ## IDE Server
+
 [x] setup require npm modules
 [x] setup require routes
 [x] setup port
@@ -51,6 +58,7 @@
 [x] setup redirection of routes
 
 ## IDE Public/Server/Routes
+
 [x] setup index.html skeleton
 [x] set functions for page load
 [x] setup receive all to-do's
@@ -67,9 +75,11 @@
 [x] setup manipulation functions on server
 
 ## CSS
+
 [x] style/design website
 
 ## Tidy Up
+
 [x] fill out README.md
 [x] fill out database.sql file
 [x] fill out comments on code
