@@ -2,6 +2,7 @@ const pg = require('pg');
 require('dotenv').config()
 
 // DB CONNECTIONS
+/*
 // Heroku Postgres Database connectionString
 const pool = new pg.Pool({
     label: 'SQL To Do List',
@@ -11,7 +12,6 @@ const pool = new pg.Pool({
     ssl: true 
 });
 
-/*
 // Local Host Postgres Database connectionString
 const pool = new pg.Pool({
     label: 'SQL To Do List',
@@ -19,6 +19,7 @@ const pool = new pg.Pool({
     max: 20,
     idleTimeoutMillis: 30000
 });
+*/
 
 // Local Host Postgres Database
 const pool = new pg.Pool({
@@ -28,6 +29,5 @@ const pool = new pg.Pool({
     max: 20,
     idleTimeoutMillis: 30000
 });
-*/
 
 module.exports = pool;
