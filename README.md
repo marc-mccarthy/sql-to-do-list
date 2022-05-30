@@ -18,7 +18,7 @@ JavaScript, CSS, HTML, Postgresql, and Markdown demonstrated.
 
 ## Packages
 
-This is built using Node.js with Express, Pg, Nodemon, SweetAlert2, Bootstrap, Luxon, Animate.css, and jQuery utilized.
+This is built using Node.js with Express, Pg, Nodemon, SweetAlert2, Bootstrap, Luxon, Animate.css, DotEnv, and jQuery utilized.
 
 ## Future Updates
 

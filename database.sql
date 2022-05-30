@@ -6,17 +6,17 @@ CREATE TABLE tasks (
 	"end_date" text not null,
 	"priority" boolean not null,
 	"progress" integer not null default 0,
-	"username" varchar(10) default current_user,
+	"username" varchar(20) default current_user,
 	"finish_date" text not null default 'Incomplete'
 );
 
-INSERT INTO tasks (task, start_date, end_date, priority, progress) VALUES 
-('Mow the lawn', '05/25/22', '05/27/22', 'false', '40'),
-('Code a To-Do-List', '05/23/22', '05/24/22', 'true', '100'),
-('Pick up dog poo', '05/26/22', '05/27/22', 'false', '20'),
-('Setup a tasks database', '05/24/22', '05/28/22', 'true', '100');
+INSERT INTO tasks (task, start_date, end_date, priority, progress, username) VALUES 
+('Mow the lawn', '5/25/22', '5/27/22', 'false', '40', 'Madden'),
+('Code a To-Do-List', '5/23/22', '5/24/22', 'true', '100', 'Mila'),
+('Pick up dog poo', '5/26/22', '5/27/22', 'false', '20', 'Reya'),
+('Paint the fence', '5/24/22', '5/28/22', 'true', '100', 'Jessica');
 
-INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ('No', 'Paint the fence', '5/20/22', '5/23/22', 'Yes', '20', 'Madden');
+INSERT INTO tasks (complete, task, start_date, end_date, priority, progress, username) VALUES ('No', 'Setup a tasks database', '5/20/22', '5/23/22', 'Yes', '20', 'Marc');
 
 SELECT * FROM tasks ORDER BY id DESC;
 
