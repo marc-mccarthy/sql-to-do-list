@@ -4,9 +4,6 @@ const pool = require('./pool');
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
 
-// Bypass encryption for Heroku Postgres testing
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 // inputs into database
 taskRouter.post('/sendTask', (req, res) => {
     console.log('POST sendTask Server');
