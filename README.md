@@ -10,7 +10,7 @@ This is a SQL To-Do List application for adding to your list of things needed to
 
 ## Interface
 
-![wireframe](./server/public/images/wireframe.png)
+![wireframe](./wireframes/wireframe.png)
 
 ## Languages
 
