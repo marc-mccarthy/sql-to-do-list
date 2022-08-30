@@ -1,3 +1,4 @@
+-- Create table for tasks
 CREATE TABLE tasks (
 	"id" serial primary key,
     "complete" boolean default 'No',
@@ -10,7 +11,7 @@ CREATE TABLE tasks (
 	"finish_date" text not null default 'Incomplete'
 );
 
-INSERT INTO tasks (task, start_date, end_date, priority, progress, username) VALUES 
+INSERT INTO tasks (task, start_date, end_date, priority, progress, username) VALUES
 ('Mow the lawn', '5/25/22', '5/27/22', 'false', '40', 'Madden'),
 ('Code a To-Do-List', '5/23/22', '5/24/22', 'true', '100', 'Mila'),
 ('Pick up dog poo', '5/26/22', '5/27/22', 'false', '20', 'Reya'),
