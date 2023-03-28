@@ -1,8 +1,8 @@
 # SQL To-Do List
 
-## Heroku Link
+## Project Link
 
-[SQL To-Do List](https://sql-to-do-list-1.herokuapp.com/)
+[SQL To-Do List](https://sql-to-do-list.marcmccarthy.io/)
 
 ## Description
 
